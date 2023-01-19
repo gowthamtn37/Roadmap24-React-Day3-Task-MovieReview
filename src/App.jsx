@@ -3,7 +3,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
-const movies =[
+const movielist =[
   {
     "name": "Vikram",
     "poster": "https://m.media-amazon.com/images/M/MV5BMmJhYTYxMGEtNjQ5NS00MWZiLWEwN2ItYjJmMWE2YTU1YWYxXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
@@ -79,7 +79,7 @@ function App() {
   return (
     <div className="App">
       
-      {movies.map((data)=> (<Review title={data.name} pic={data.poster} detail={data.summary} rat={data.rating}/>)) }
+      {movielist.map((data)=> (<Review review={data}/>)) }
 
     </div>
   )
@@ -88,24 +88,16 @@ function App() {
 export default App
 
 
-function Review({title,pic,detail,rat}){
+function Review({review}){
   return(
-    <div>
-      <div className='row row-cols-md-3'>
-  <div className='col mb-1'>
-    <div className='card'>
-      <img src={pic} class='card-img-top' alt={title} />
-      <div className='card-body'>
-        <h5 className='card-title">Card title'>    {title}    <span>⭐{rat}</span></h5>
-        <p className='card-text'>{detail}</p>
-        <Counter/>
-      </div>
-    </div>
-  </div>
-    </div>
-
-  
-
+    <div className='movie-container'>
+      <img className='movie-pose'   src={review.poster} alt={review.name} />
+      <div className="class-spec">
+     <h2 className="movie-name">{review.name}</h2>
+     <h2 className="movie-rating">{review.rating}</h2>
+     </div>
+     <p className='movie-summary'>{review.summary}</p>
+     <Counter/>
     </div>
 
   )
