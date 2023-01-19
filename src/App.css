@@ -1,16 +1,22 @@
 h1{
   background-color: black;
   text-align: center;
-  color: blue;
+  color:gold;
+  margin-top: 0px;
   margin-bottom: 40px;
 
 }
 .movie-list{
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-around;
-  min-width: 340px;
+  min-width: 340px; */
+
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
+  gap: 15px;
+  justify-items: center;
 }
 
 .movie-container{
@@ -19,14 +25,21 @@ h1{
   margin:10px
 }
 .movie-pose{
-  height: 550px;
+  height: 640px;
   width: 100%;
-  object-fit:fill;
+  object-fit:cover;
+}
+
+.movie-name{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .align-spec{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
 }
 
 .movie-summary{
@@ -34,7 +47,10 @@ h1{
   width: 100%;
   overflow: auto;
 }
-
+.cnt-btn{
+  display: flex;
+  justify-content: flex-end;
+}
 .btn-1{
   height: 50px;
   width: 50px;

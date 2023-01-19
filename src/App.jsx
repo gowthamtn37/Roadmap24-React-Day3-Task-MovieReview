@@ -7,7 +7,7 @@ import './App.css'
 function App() {
   return (
     <div className="App">
-      <h1>MOVIE BOARD</h1>
+      <h1>MOVIE DASHBOARD</h1>
       
     <Movielist />
     </div>
@@ -96,17 +96,20 @@ function Movielist(){
 
 function Review({review}){
 
-  // const sty = { color : review.rating > 8.5 ? green : red };
-  // const [Show, setShow] = useState(true);
+  const sty = {color: review.rating > 8.5 ? 'green' : 'red' };
+
+  const [Show, setShow] = useState(true);
+  const dis = {display: Show? "block":"none" }
+
   return(
     <div className='movie-container'>
       <img className='movie-pose'   src={review.poster} alt={review.name} />
       <div className='align-spec'>
      <h2 className='movie-name'>{review.name}</h2>
-     <h2 className='movie-rating'>⭐{review.rating}</h2>
+     <p className='movie-rating' style={sty}  >⭐{review.rating}</p>
      </div>
-     {/* <button  className='btn3' onClick={()=>setShow(!Show)}>Toggle Summary - {show}</button> */}
-     <p className='movie-summary'>{review.summary}</p>
+      <button   className='btn3' onClick={()=>setShow(!Show)}>Toggle Summary - {"" +Show}</button>
+     <p style={dis} className='movie-summary'>{review.summary}</p>
      <Counter/>
     </div>
 
@@ -118,7 +121,7 @@ function Counter(){
   const [Dislike, setDislike] = useState(0);
 
   return(
-    <div>
+    <div className='cnt-btn'>
 <button className='btn-1' onClick={()=>setLike( Like + 1)}>👍 {Like}</button>
 <button className='btn-2' onClick={()=>setDislike( Dislike + 1)}>👎 {Dislike}</button>
     </div>
