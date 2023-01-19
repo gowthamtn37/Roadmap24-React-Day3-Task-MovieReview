@@ -1,12 +1,53 @@
-.row {
+h1{
+  background-color: black;
+  text-align: center;
+  color: blue;
+  margin-bottom: 40px;
+
+}
+.movie-list{
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
+  align-content: center;
+  justify-content: space-around;
+  min-width: 340px;
 }
-.card-img-top{
-  height: 350px;
-  width: 250px;
-  border-radius: 5%;
+
+.movie-container{
+  background-color: aliceblue;
+  width: 340px;
+  margin:10px
+}
+.movie-pose{
+  height: 550px;
+  width: 100%;
+  object-fit:fill;
+}
+
+.align-spec{
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-summary{
+  height: 100px;
+  width: 100%;
+  overflow: auto;
+}
+
+.btn-1{
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  background-color: green;
+  border:none;
+  border-radius: 50%;
+}
+.btn-2{
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  background-color: red;
+  border:none;
+  border-radius: 50%;
 }
