@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import Button from '@mui/material/Button';
+
 import './App.css'
 
 
@@ -139,7 +141,7 @@ function Movielist(){
     <input type='text' placeholder='Poster' onChange={(event)=>setPic(event.target.value)}></input>
     <input type='text' placeholder='Summary' onChange={(event)=>setDes(event.target.value)}></input>
     <input type='text' placeholder='rating' onChange={(event)=>setRat(event.target.value)}></input>
-    <button type='submit' onClick={ ()=>{
+    <Button variant="contained" color='success' type='submit' onClick={ ()=>{
       const newMovie={
       name: title,
       poster:pic,
@@ -148,7 +150,7 @@ function Movielist(){
       }
       setMovielist([...movielist,newMovie])
       
-    }}>ADD Movie</button>
+    }}>ADD Movie</Button>
     </div><br/>
 
     <div className='movie-list'>
@@ -172,7 +174,7 @@ function Review({review}){
      <h2 className='movie-name'>{review.name}</h2>
      <p className='movie-rating' style={sty}  >⭐{review.rating}</p>
      </div>
-      <button   className='btn3' onClick={()=>setShow(!Show)}>Toggle Summary - {"" +Show}</button>
+      <Button  color="error" className='btn3' onClick={()=>setShow(!Show)}>Toggle Summary - {"" +Show}</Button>
     { Show?<p className='movie-summary'>{review.summary}</p>: null}
      {/* <p className={Show? 'movie-summary-green':'movie-summary-red'} >{review.summary}</p> */}
      <Counter/>
@@ -187,8 +189,8 @@ function Counter(){
 
   return(
     <div className='cnt-btn'>
-<button className='btn-1' onClick={()=>setLike( Like + 1)}>👍 {Like}</button>
-<button className='btn-2' onClick={()=>setDislike( Dislike + 1)}>👎 {Dislike}</button>
+<Button variant='outlined' color="success"onClick={()=>setLike( Like + 1)}>👍 {Like}</Button>
+<Button variant='outlined'color="error" onClick={()=>setDislike( Dislike + 1)}>👎 {Dislike}</Button>
     </div>
   )
 }

@@ -50,6 +50,8 @@ h1{
 .cnt-btn{
   display: flex;
   justify-content: flex-end;
+  margin: 10px;
+  gap: 10px;
 }
 .btn-1{
   height: 50px;
