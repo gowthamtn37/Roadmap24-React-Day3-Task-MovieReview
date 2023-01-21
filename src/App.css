@@ -67,3 +67,22 @@ h1{
   border:none;
   border-radius: 50%;
 }
+
+.movie-summary-green{
+background-color: green;
+
+}
+
+.movie-summary-red{
+  background-color: crimson;
+}
+
+.Movie-Add-Form{
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+  max-width: 500px;
+  margin: auto;
+  
+  
+}

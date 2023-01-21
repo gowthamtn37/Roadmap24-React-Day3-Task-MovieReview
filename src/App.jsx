@@ -1,24 +1,64 @@
 import React from 'react'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 
 function App() {
   return (
     <div className="App">
-      <h1>MOVIE DASHBOARD</h1>
-      
+      <h1>MOVIE DASHBOARD</h1> 
     <Movielist />
+
+    {/* <Colorgame /> */}
+
     </div>
-  )
+  );
 }
 
 export default App
 
+
+function Colorgame(){
+
+  const[Color, setColor]=useState("orange") ;
+
+  const [Colorlist, setColorlist]=useState(["crimson",]);
+
+  const Style ={
+    background:Color,
+  };
+
+  return(
+    <>
+<input style={Style} type='text' onChange={(eve)=>setColor(eve.target.value)}
+value={Color}/> 
+<button onClick={()=>setColorlist([...Colorlist, Color])}>Add Me</button>
+
+{Colorlist.map((clr)=><Colorbox Colorbox={clr}/>)}
+</>
+  );
+}
+
+function Colorbox({Colorbox}){
+  const sty = {
+    backgroundColor:Colorbox,
+  height:'40px',
+width:'500px'};
+
+  return(
+    <div>
+      <br/>
+      <div style={sty}></div>
+    </div>
+  );
+}
+
+
+
+
 function Movielist(){
 
-  const movielist =[
+  const [movielist, setMovielist] =useState([
     {
       "name": "Vikram",
       "poster": "https://m.media-amazon.com/images/M/MV5BMmJhYTYxMGEtNjQ5NS00MWZiLWEwN2ItYjJmMWE2YTU1YWYxXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
@@ -85,12 +125,36 @@ function Movielist(){
       "summary": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA\\n pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team\\n of researchers, to find a new planet for humans.",
       "rating": 8.8
     }
-  ];
+  ]);
+
+  const[title, setTitle]=useState("");
+  const[pic, setPic]=useState("");
+  const[des, setDes]=useState("");
+  const[rat, setRat]=useState("");
 
   return(
+<div>
+    <div className='Movie-Add-Form'>
+    <input type='text' placeholder='Name' onChange={(event)=>setTitle(event.target.value)}></input>
+    <input type='text' placeholder='Poster' onChange={(event)=>setPic(event.target.value)}></input>
+    <input type='text' placeholder='Summary' onChange={(event)=>setDes(event.target.value)}></input>
+    <input type='text' placeholder='rating' onChange={(event)=>setRat(event.target.value)}></input>
+    <button type='submit' onClick={ ()=>{
+      const newMovie={
+      name: title,
+      poster:pic,
+      summary: des,
+      rating: rat,
+      }
+      setMovielist([...movielist,newMovie])
+      
+    }}>ADD Movie</button>
+    </div><br/>
+
     <div className='movie-list'>
     {movielist.map((data)=> (<Review review={data} />)) }
     </div>
+    </div> 
   )
 }
 
@@ -99,7 +163,7 @@ function Review({review}){
   const sty = {color: review.rating > 8.5 ? 'green' : 'red' };
 
   const [Show, setShow] = useState(true);
-  const dis = {display: Show? "block":"none" }
+  // const dis = {display: Show? "block":"none" }
 
   return(
     <div className='movie-container'>
@@ -109,7 +173,8 @@ function Review({review}){
      <p className='movie-rating' style={sty}  >⭐{review.rating}</p>
      </div>
       <button   className='btn3' onClick={()=>setShow(!Show)}>Toggle Summary - {"" +Show}</button>
-     <p style={dis} className='movie-summary'>{review.summary}</p>
+    { Show?<p className='movie-summary'>{review.summary}</p>: null}
+     {/* <p className={Show? 'movie-summary-green':'movie-summary-red'} >{review.summary}</p> */}
      <Counter/>
     </div>
 
