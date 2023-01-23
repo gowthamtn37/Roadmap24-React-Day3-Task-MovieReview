@@ -20,7 +20,7 @@ h1{
 }
 
 .movie-container{
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   width: 340px;
   margin:10px
 }
@@ -40,12 +40,16 @@ h1{
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
+  margin-left: 10px;
 }
-
+.align-specs{
+  display: flex;
+}
 .movie-summary{
   height: 100px;
-  width: 100%;
+  width: 98%;
   overflow: auto;
+  margin-left:auto;
 }
 .cnt-btn{
   display: flex;
