@@ -139,7 +139,7 @@ function Review({ review }) {
       {Show ? <p className='movie-summary'>{review.summary}</p> : null}
       {/* <p className={Show? 'movie-summary-green':'movie-summary-red'} >{review.summary}</p> */}
       <Counter />
-      </Card>
+    </Card>
     </div>
 
   );
