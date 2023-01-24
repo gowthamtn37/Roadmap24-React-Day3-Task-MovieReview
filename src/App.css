@@ -22,7 +22,7 @@ h1{
 .movie-container{
   /* background-color: aliceblue; */
   width: 340px;
-  margin:10px
+  margin:10px;
 }
 .movie-pose{
   height: 640px;
@@ -42,20 +42,17 @@ h1{
   margin-right: 10px;
   margin-left: 10px;
 }
-.align-specs{
-  display: flex;
-}
+
 .movie-summary{
+  /* height:min-content; */
   height: 100px;
-  width: 98%;
-  overflow: auto;
-  margin-left:auto;
+  width: 100%;
+  overflow:auto;
+  
+
 }
 .cnt-btn{
   display: flex;
-  justify-content: flex-end;
-  margin: 10px;
-  gap: 10px;
 }
 .btn-1{
   height: 50px;

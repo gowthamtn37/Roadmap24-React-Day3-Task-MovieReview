@@ -1,12 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import { Counter } from './Counter';
 import TextField from '@mui/material/TextField';
-import Card from '@mui/material/Card';
-import IconButton from '@mui/material/IconButton';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Collapse from '@mui/material/Collapse';
+import { Review } from './Review';
 
 export function Movielist() {
 
@@ -85,7 +81,9 @@ export function Movielist() {
   const [rat, setRat] = useState("");
 
   return (
+
     <div>
+      <h1>MOVIE DASHBOARD</h1> 
       <div className='Movie-Add-Form'>
       <TextField label="Name" onChange={(event) => setTitle(event.target.value)} variant="outlined" />
       <TextField label='Poster' onChange={(event) => setPic(event.target.value)} variant="outlined" />
@@ -96,6 +94,7 @@ export function Movielist() {
         <input type='text' placeholder='Poster' onChange={(event) => setPic(event.target.value)}></input>
         <input type='text' placeholder='Summary' onChange={(event) => setDes(event.target.value)}></input>
         <input type='text' placeholder='rating' onChange={(event) => setRat(event.target.value)}></input> */}
+
         <Button variant="contained" color='success' type='submit' onClick={() => {
           const newMovie = {
             name: title,
@@ -114,33 +113,4 @@ export function Movielist() {
     </div>
   );
 }
-function Review({ review }) {
 
-  const sty = { color: review.rating > 8.5 ? 'green' : 'red' };
-
-  const [Show, setShow] = useState(true);
-  // const dis = {display: Show? "block":"none" }
-  return (
-    <div className='movie-container'>
-    <Card sx={{ maxWidth: 340 }}>
-      <img className='movie-pose' src={review.poster} alt={review.name} />
-      <div className='align-spec'>
-      <div className='align-specs'>
-
-        <h2 className='movie-name'>{review.name}</h2>
-        <IconButton className='toggle' onClick={() => setShow(!Show)}aria-label="Summary">
-          <ExpandMoreIcon />
-        </IconButton>
-        </div>
-
-        <p className='movie-rating' style={sty}>⭐{review.rating}</p>
-      </div>
-      {/* <Button color="error" className='btn3' onClick={() => setShow(!Show)}>Toggle Summary - {"" + Show}</Button> */}
-      {Show ? <p className='movie-summary'>{review.summary}</p> : null}
-      {/* <p className={Show? 'movie-summary-green':'movie-summary-red'} >{review.summary}</p> */}
-      <Counter />
-    </Card>
-    </div>
-
-  );
-}
