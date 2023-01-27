@@ -1,9 +1,7 @@
 import React from 'react'
-
 import './App.css'
 import { Movielist } from './Movielist';
-import { Tictacgame } from './Tictacgame';
-
+import { TicTacToe } from './TicTacToe';
 
 function App() {
   return (
@@ -12,12 +10,13 @@ function App() {
     {/* <Movielist /> */}
 
     {/* <Colorgame /> */}
-    <Tictacgame/>
+    <TicTacToe/>
 
     </div>
   );
 }
 
 export default App;
+
 
 
