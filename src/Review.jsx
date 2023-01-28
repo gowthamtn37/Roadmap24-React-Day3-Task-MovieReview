@@ -7,13 +7,17 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import InfoIcon from '@mui/icons-material/Info';
+import { useNavigate } from 'react-router-dom';
 
-export function Review({ review }) {
+export function Review({ review, id }) {
 
   const sty = { color: review.rating > 8.5 ? 'green' : 'red' };
 
   const [Show, setShow] = useState(true);
   // const dis = {display: Show? "block":"none" }
+
+  const navigate = useNavigate();
   return (
 
     <Card className='movie-container'>
@@ -24,6 +28,9 @@ export function Review({ review }) {
           <h2 className='movie-name'>{review.name}
           <IconButton color='primary' className='toggle' onClick={() => setShow(!Show)} aria-label="Summary">
             {Show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          </IconButton>
+          <IconButton color='primary' onClick={() =>navigate(`/movies/${id}`)} aria-label="info">
+            <InfoIcon />
           </IconButton>
           </h2>
 

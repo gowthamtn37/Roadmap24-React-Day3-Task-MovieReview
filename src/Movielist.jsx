@@ -108,7 +108,7 @@ export function Movielist() {
       </div><br />
 
       <div className='movie-list'>
-        {movielist.map((data) => (<Review review={data} />))}
+        {movielist.map((data,index) => (<Review review={data} id={index} />))}
       </div>
     </div>
   );

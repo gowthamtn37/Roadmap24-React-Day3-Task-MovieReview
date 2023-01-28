@@ -3,12 +3,13 @@ import React from 'react';
 import { useState } from 'react';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
+import Button from '@mui/material/Button';
 
 export function TicTacToe() { 
 
   const { width, height } = useWindowSize();
 
-  const [board, setBoard] =useState([null,null,null,null,null,null,null,null,null]);
+  const [board, setBoard] =useState(Array(9).fill(null));
 
   const [isXturn, setTurn]=useState(true);
 
@@ -34,6 +35,7 @@ const decideWinner = ()=>
     [2,5,8],
     [0,4,8],
     [2,4,6],
+    [0,3,6]
   ];
 
   for(let i =0; i<lines.length; i++){
@@ -48,6 +50,12 @@ return null;
 
 const winner =decideWinner(board);
 
+const resetGame = ()=>{
+  setBoard(Array(9).fill(null));
+  setTurn(true);
+
+}
+
   return (
     <div className='Tic-tac-toe'>
       {winner?<Confetti
@@ -59,7 +67,8 @@ const winner =decideWinner(board);
     <div className='board-box'>
    {board.map((value, index)=> <Gamebox val={value} onPlayer={()=>handleClick(index)} />)}
    </div>
-  <h2>Winner : {winner}</h2>
+  {winner? <h2>Winner : {winner}</h2>:null}
+  <Button variant="contained" color='error' type='submit' onClick={() => {resetGame()}}>Reset</Button>
     </div>
   );
 }

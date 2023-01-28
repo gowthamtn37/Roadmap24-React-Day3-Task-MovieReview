@@ -103,7 +103,7 @@ background-color: green;
   display: grid;
   grid-template-columns: repeat(3,1fr);
   width: min-content;
-  margin:  0 auto ;
+  margin:  16px auto ;
 }
 .Tic-tac-toe{
   text-align: center;

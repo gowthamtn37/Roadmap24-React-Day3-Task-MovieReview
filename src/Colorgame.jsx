@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Colorbox } from './Colorbox';
 
-function Colorgame() {
+export function Colorgame() {
 
   const [Color, setColor] = useState("orange");
 
