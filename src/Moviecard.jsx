@@ -10,7 +10,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
 
-export function Review({ review, id }) {
+export function Moviecard({ review, id }) {
 
   const sty = { color: review.rating > 8.5 ? 'green' : 'red' };
 

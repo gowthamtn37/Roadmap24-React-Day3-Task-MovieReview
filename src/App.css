@@ -108,3 +108,6 @@ background-color: green;
 .Tic-tac-toe{
   text-align: center;
 }
+.movie-detail-container{
+  max-width: 650px;
+}
