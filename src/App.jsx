@@ -3,17 +3,22 @@ import './App.css'
 import { Movielist } from './Movielist';
 import { TicTacToe } from './TicTacToe';
 import { Colorgame } from './Colorgame';
-import { Routes, Route, Link, useParams,useNavigate, Navigate  } from 'react-router-dom';
+import { Routes, Route, Link, useParams, useNavigate, Navigate } from 'react-router-dom';
 import { Notfound } from './Notfound';
 import { Home } from './Home';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Paper from '@mui/material/Paper';
 
+//redirect reqiures Navigate
 
 function App() {
-  const initaldata=[
+  const initaldata = [
     {
       "id": "99",
       "name": "Vikram",
@@ -103,66 +108,69 @@ function App() {
       "id": "109"
     }
   ]
-  
+
   const [movielist, setMovielist] = useState(initaldata);
+  const navigate = useNavigate();
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
   return (
-    <div className="App">
+    <ThemeProvider theme={darkTheme}>
+      <Paper elevation={3}>
+        <div className="App">
 
-      <nav>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/movies'>Movies</Link>
-          </li>
-          <li>
-            <Link to='/addcolor'>Color Game</Link>
-          </li>
-          <li>
-            <Link to='/tic-tac-toe'>Tic Tac Toe</Link>
-          </li>
-        </ul>
-      </nav>
+          <AppBar position="static">
+            <Toolbar>
+              <Button onClick={() => navigate('/')} color="inherit">Home</Button>
+              <Button onClick={() => navigate('/movies')} color="inherit">Movies</Button>
+              <Button onClick={() => navigate('/addcolor')} color="inherit">Add-color</Button>
+              <Button onClick={() => navigate('/tic-tac-toe')} color="inherit">TicTacToe</Button>
+            </Toolbar>
+          </AppBar>
 
-    <Routes>
-      <Route path='/' element={<Home/>}/>
+          <Routes>
+            <Route path='/' element={<Home />} />
 
-      <Route path='/movies' element={<Movielist movielist={movielist} setMovielist={setMovielist}/>}/>
-      <Route path='/films' element={<Navigate replace to ='/movies'/>}/>
+            <Route path='/movies' element={<Movielist movielist={movielist} setMovielist={setMovielist} />} />
+            <Route path='/films' element={<Navigate replace to='/movies' />} />
 
-      <Route path='/movies/:id' element={<Movieldetails movielist={movielist}/>}/>
-      <Route path='/addcolor' element={<Colorgame/>}/>
-      <Route path='/tic-tac-toe' element={<TicTacToe/>}/>
-      <Route path='*' element={<Notfound/>}/>
-    </Routes>
+            <Route path='/movies/:id' element={<Movieldetails movielist={movielist} />} />
+            <Route path='/addcolor' element={<Colorgame />} />
+            <Route path='/tic-tac-toe' element={<TicTacToe />} />
+            <Route path='*' element={<Notfound />} />
+          </Routes>
 
-    </div>
+        </div>
+      </Paper>
+    </ThemeProvider>
   );
 }
 
-function Movieldetails({movielist}){
-  const{id}=useParams();
+function Movieldetails({ movielist }) {
+  const { id } = useParams();
   const movie = movielist[id];
   const sty = { color: movie.rating > 8.5 ? 'green' : 'red' };
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   return <div>
 
-<iframe width="100%" height="650px" src={movie.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" height="650px" src={movie.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<div className='movie-detail-container'>
-<div className='align-spec'>
-    <h2 className='movie-name'>{movie.name}</h2>
+    <div className='movie-detail-container'>
+      <div className='align-spec'>
+        <h2 className='movie-name'>{movie.name}</h2>
 
-  <p className='movie-rating' style={sty}>⭐{movie.rating}</p>
-</div>
-  <p className='movie-summary'>{movie.summary}</p>
-  </div>
-  
-<Button  onClick={()=>navigate(-1)} variant="contained" startIcon={< ArrowBackIcon />}>
-  Back 
-</Button>
+        <p className='movie-rating' style={sty}>⭐{movie.rating}</p>
+      </div>
+      <p className='movie-summary'>{movie.summary}</p>
+    </div>
+
+    <Button onClick={() => navigate(-1)} variant="contained" startIcon={< ArrowBackIcon />}>
+      Back
+    </Button>
   </div>
 }
 export default App;
