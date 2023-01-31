@@ -13,7 +13,7 @@ export function Movieldetails() {
     fetch(`https://63d75fd5afbba6b7c93bed33.mockapi.io/movies/${id}`)
     .then((data)=>data.json())
     .then((movie)=> setMovie(movie));
-  },[])
+  },[id])
 
   // const movie = movielist[id];
   const sty = { color: movie.rating > 8.5 ? 'green' : 'red' };
