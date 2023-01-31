@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import { Movielist } from './Movielist';
 import { TicTacToe } from './TicTacToe';
 import { Colorgame } from './Colorgame';
-import { Routes, Route, Link, useParams, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
 import { Notfound } from './Notfound';
 import { Home } from './Home';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
-
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import { Addmovie } from './Addmovie';
+import { Movieldetails } from './Movieldetails';
 //redirect reqiures Navigate
 
 function App() {
@@ -110,32 +111,41 @@ function App() {
   ]
 
   const [movielist, setMovielist] = useState(initaldata);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+const [mode, setMode]=useState('dark')
   const darkTheme = createTheme({
     palette: {
-      mode: 'dark',
+      mode: mode,
     },
   });
+  const bgStyles={
+    borderRadius:'0px',
+    minHeight:'100vh',
+  }
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Paper elevation={3}>
+      <Paper sx={bgStyles} elevation={3}>
         <div className="App">
 
           <AppBar position="static">
             <Toolbar>
               <Button onClick={() => navigate('/')} color="inherit">Home</Button>
               <Button onClick={() => navigate('/movies')} color="inherit">Movies</Button>
+              <Button onClick={() => navigate('/movies/addmovie')} color="inherit">Add movies</Button>
               <Button onClick={() => navigate('/addcolor')} color="inherit">Add-color</Button>
               <Button onClick={() => navigate('/tic-tac-toe')} color="inherit">TicTacToe</Button>
+
+              <Button  sx={{marginLeft:'auto'}} onClick={()=>{setMode(mode === 'light' ? 'dark':'light')}} color="inherit" startIcon={mode === 'dark'? <Brightness7Icon/>:<Brightness4Icon/>}>{mode === 'light' ? 'dark':'light'} mode</Button>
             </Toolbar>
           </AppBar>
 
           <Routes>
             <Route path='/' element={<Home />} />
 
-            <Route path='/movies' element={<Movielist movielist={movielist} setMovielist={setMovielist} />} />
+            <Route path='/movies' element={<Movielist />} />
+            <Route path='/movies/addmovie' element={<Addmovie movielist={movielist} setMovielist={setMovielist} />} />
             <Route path='/films' element={<Navigate replace to='/movies' />} />
 
             <Route path='/movies/:id' element={<Movieldetails movielist={movielist} />} />
@@ -150,31 +160,6 @@ function App() {
   );
 }
 
-function Movieldetails({ movielist }) {
-  const { id } = useParams();
-  const movie = movielist[id];
-  const sty = { color: movie.rating > 8.5 ? 'green' : 'red' };
-  const navigate = useNavigate();
-  return <div>
-
-    <iframe width="100%" height="650px" src={movie.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-    <div className='movie-detail-container'>
-      <div className='align-spec'>
-        <h2 className='movie-name'>{movie.name}</h2>
-
-        <p className='movie-rating' style={sty}>⭐{movie.rating}</p>
-      </div>
-      <p className='movie-summary'>{movie.summary}</p>
-    </div>
-
-    <Button onClick={() => navigate(-1)} variant="contained" startIcon={< ArrowBackIcon />}>
-      Back
-    </Button>
-  </div>
-}
 export default App;
-
-
 
 

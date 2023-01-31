@@ -1,48 +1,24 @@
 import React from 'react';
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import { Moviecard } from './Moviecard';
+import { useEffect,useState } from 'react';
 
-export function Movielist({movielist, setMovielist}) {
- 
+export function Movielist() {
 
-  const [title, setTitle] = useState("");
-  const [pic, setPic] = useState("");
-  const [des, setDes] = useState("");
-  const [rat, setRat] = useState("");
-
+  const [movielist, setMovielist] = useState([]);
+  useEffect(()=>{
+    fetch('https://63d75fd5afbba6b7c93bed33.mockapi.io/movies')
+    .then((data)=>data.json())
+    .then((movie)=> setMovielist(movie));
+  },[])
+  
   return (
 
-    <div>
-      <h1>MOVIE DASHBOARD</h1> 
-      <div className='Movie-Add-Form'>
-      <TextField label="Name" onChange={(event) => setTitle(event.target.value)} variant="outlined" />
-      <TextField label='Poster' onChange={(event) => setPic(event.target.value)} variant="outlined" />
-      <TextField label='Summary' onChange={(event) => setDes(event.target.value)} variant="outlined" />
-      <TextField label='rating' onChange={(event) => setRat(event.target.value)} variant="outlined" />
-
-        {/* <input type='text' placeholder='Name' onChange={(event) => setTitle(event.target.value)}></input>
-        <input type='text' placeholder='Poster' onChange={(event) => setPic(event.target.value)}></input>
-        <input type='text' placeholder='Summary' onChange={(event) => setDes(event.target.value)}></input>
-        <input type='text' placeholder='rating' onChange={(event) => setRat(event.target.value)}></input> */}
-
-        <Button variant="contained" color='success' type='submit' onClick={() => {
-          const newMovie = {
-            name: title,
-            poster: pic,
-            summary: des,
-            rating: rat,
-          };
-          setMovielist([...movielist, newMovie]);
-
-        }}>ADD Movie</Button>
-      </div><br />
-
+<div>
       <div className='movie-list'>
-        {movielist.map((data,index) => (<Moviecard review={data} id={index} />))}
+        {movielist.map((data) => (<Moviecard key={data.id} review={data} id={data.id} />))}
       </div>
     </div>
   );
 }
+
 
