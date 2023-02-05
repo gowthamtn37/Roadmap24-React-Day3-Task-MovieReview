@@ -69,8 +69,7 @@ const navigate = useNavigate();
       
         <TextField 
         name='name'
-        type='name'
-        value={values.email}
+        value={values.name}
         onChange={handleChange}
         onBlur={handleBlur}
         label="Name" variant="outlined"
@@ -79,8 +78,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='poster'
-        type='text'
-        value={values.email}
+        value={values.poster}
         onChange={handleChange}
         onBlur={handleBlur}
         label='Poster'  variant="outlined"
@@ -89,8 +87,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='summary'
-        type='text'
-        value={values.email}
+        value={values.summary}
         onChange={handleChange}
         onBlur={handleBlur}
         label='Summary'  variant="outlined"
@@ -99,8 +96,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='rating'
-        type='text'
-        value={values.email}
+        value={values.rating}
         onChange={handleChange}
         onBlur={handleBlur}
         label='rating'  variant="outlined" 
@@ -109,8 +105,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='trailer'
-        type='text'
-        value={values.email}
+        value={values.trailer}
         onChange={handleChange}
         onBlur={handleBlur}
         label='trailer' variant="outlined" 

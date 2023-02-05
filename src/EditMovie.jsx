@@ -35,29 +35,32 @@ const formvalidationschema = yup.object({
 export function EditMovie() {
 
   const { id } = useParams();
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   useEffect(()=>{
     fetch(`https://63d75fd5afbba6b7c93bed33.mockapi.io/movies/${id}`)
     .then((data)=>data.json())
     .then((mvs)=> setMovie(mvs));
   },[id]);
-  console.log (movie)
+  
   return(
     <div>
+
     { movie? <EditMovieForm movie={movie} /> : <h2>Loading.....</h2>}
              
     </div>
+    
   )
 }
 
 function  EditMovieForm({movie}){
+  console.log (movie)
   const {handleSubmit, handleChange, handleBlur, values, errors, touched} = useFormik({
     initialValues:{
-      name:"movie.name", 
-      poster:"movie.poster", 
-      summary:"movie.summary", 
-      rating:"movie.rating", 
-      trailer:"movie.trailer",},
+      name:movie.name, 
+      poster:movie.poster, 
+      summary:movie.summary, 
+      rating:movie.rating, 
+      trailer:movie.trailer},
     validationSchema: formvalidationschema,
     onSubmit: (updateMovie)=>{
       console.log('form values', values);
@@ -67,8 +70,6 @@ function  EditMovieForm({movie}){
 const navigate = useNavigate();
 
   const UpdateMovie = async(updateMovie) => {
- 
-
     await fetch(`https://63d75fd5afbba6b7c93bed33.mockapi.io/movies/${movie.id}`,
     { method:'PUT',
      body: JSON.stringify(updateMovie), 
@@ -80,12 +81,12 @@ const navigate = useNavigate();
 
   return (
     <div>
-
+<br/>
       <form onSubmit={handleSubmit} className='Movie-Add-Form'>
       
         <TextField 
         name='name'
-        value={values.email}
+        value={values.name}
         onChange={handleChange}
         onBlur={handleBlur}
         label="Name" variant="outlined"
@@ -94,7 +95,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='poster'
-        value={values.email}
+        value={values.poster}
         onChange={handleChange}
         onBlur={handleBlur}
         label='Poster'  variant="outlined"
@@ -103,7 +104,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='summary'
-        value={values.email}
+        value={values.summary}
         onChange={handleChange}
         onBlur={handleBlur}
         label='Summary'  variant="outlined"
@@ -112,7 +113,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='rating'
-        value={values.email}
+        value={values.rating}
         onChange={handleChange}
         onBlur={handleBlur}
         label='rating'  variant="outlined" 
@@ -121,7 +122,7 @@ const navigate = useNavigate();
         
         <TextField 
         name='trailer'
-        value={values.email}
+        value={values.trailer}
         onChange={handleChange}
         onBlur={handleBlur}
         label='trailer' variant="outlined" 
