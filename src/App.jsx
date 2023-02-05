@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './App.css'
 import { Movielist } from './Movielist';
 import { TicTacToe } from './TicTacToe';
 import { Colorgame } from './Colorgame';
-import { Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { Notfound } from './Notfound';
 import { Home } from './Home';
 import { useState } from 'react';
@@ -145,7 +145,7 @@ const [mode, setMode]=useState('dark')
             <Route path='/' element={<Home />} />
 
             <Route path='/movies' element={<Movielist />} />
-            <Route path='/movies/addmovie' element={<Addmovie movielist={movielist} setMovielist={setMovielist} />} />
+            <Route path='/movies/addmovie' element={<Addmovie />} />
             <Route path='/films' element={<Navigate replace to='/movies' />} />
 
             <Route path='/movies/:id' element={<Movieldetails movielist={movielist} />} />

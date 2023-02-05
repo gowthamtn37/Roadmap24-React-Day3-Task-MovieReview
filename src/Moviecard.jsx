@@ -10,7 +10,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
 
-export function Moviecard({ review, id, deleteButton }) {
+export function Moviecard({ review, id, deleteButton, editButton }) {
 
   const sty = { color: review.rating > 8.5 ? 'green' : 'red' };
 
@@ -42,7 +42,7 @@ export function Moviecard({ review, id, deleteButton }) {
       </CardContent>
       {/* <p className={Show? 'movie-summary-green':'movie-summary-red'} >{review.summary}</p> */}
       <CardActions>
-        <Counter />{deleteButton}
+        <Counter />{editButton}{deleteButton}
       </CardActions>
     </Card>
 

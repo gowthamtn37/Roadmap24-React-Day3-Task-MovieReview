@@ -12,7 +12,7 @@ export function Movieldetails() {
   useEffect(()=>{
     fetch(`https://63d75fd5afbba6b7c93bed33.mockapi.io/movies/${id}`)
     .then((data)=>data.json())
-    .then((movie)=> setMovie(movie));
+    .then((mvs)=> setMovie(mvs));
   },[id])
 
   // const movie = movielist[id];
