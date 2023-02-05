@@ -17,6 +17,8 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { Addmovie } from './Addmovie';
 import { Movieldetails } from './Movieldetails';
 import { BasicForm } from './BasicForm';
+import { EditMovie } from './EditMovie';
+
 //redirect reqiures Navigate
 
 function App() {
@@ -62,6 +64,7 @@ const [mode, setMode]=useState('dark')
             <Route path='/addcolor' element={<Colorgame />} />
             <Route path='/tic-tac-toe' element={<TicTacToe />} />
             <Route path='/form' element={<BasicForm />} />
+            <Route path='/movies/edit/:id' element={<EditMovie />} />
             <Route path='*' element={<Notfound />} />
           </Routes>
 

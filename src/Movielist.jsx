@@ -4,6 +4,7 @@ import { useEffect,useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { useNavigate } from 'react-router-dom';
 export function Movielist() {
 
   const [movielist, setMovielist] = useState([]);
@@ -21,9 +22,7 @@ useEffect(()=> getMovies(),[]);
       .then(()=>getMovies());
   };
 
-  const editMovie =(id) =>{
-
-  }
+  const navigate = useNavigate();
   
   return (
 
@@ -35,7 +34,7 @@ useEffect(()=> getMovies(),[]);
          aria-label="delete">
         <DeleteIcon />
       </IconButton>}
-      editButton={<IconButton onClick={()=>editMovie(data.id)}
+      editButton={<IconButton onClick={()=>navigate(`/movies/edit/${data.id}`)}
       sx={{marginLeft:'auto'}} 
       color="primary"
       aria-label="Edit">
