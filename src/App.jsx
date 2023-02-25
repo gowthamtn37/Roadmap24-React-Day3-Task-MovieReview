@@ -18,8 +18,11 @@ import { Addmovie } from './Addmovie';
 import { Movieldetails } from './Movieldetails';
 import { BasicForm } from './BasicForm';
 import { EditMovie } from './EditMovie';
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 //redirect reqiures Navigate
+const queryClient = new QueryClient();
 
 function App() {
   
@@ -37,6 +40,8 @@ const [mode, setMode]=useState('dark')
   }
 
   return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={true} />
     <ThemeProvider theme={darkTheme}>
       <Paper sx={bgStyles} elevation={3}>
         <div className="App">
@@ -71,6 +76,8 @@ const [mode, setMode]=useState('dark')
         </div>
       </Paper>
     </ThemeProvider>
+    <ReactQueryDevtools initialIsOpen={true} />
+    </QueryClientProvider>
   );
 }
 
