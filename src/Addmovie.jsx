@@ -39,7 +39,6 @@ export function Addmovie() {
 
   const addMovie = async (newMovie) => {
     await fetch(`${API}/movies`, {
-      mode: "no-cors",
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: { "Content-Type": "application/json" },
