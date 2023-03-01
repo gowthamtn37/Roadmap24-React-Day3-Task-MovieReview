@@ -27,14 +27,14 @@ export function Movielist() {
   return (
     <div>
       <div className="movie-list">
-        {movielist.map((data, props) => (
+        {movielist.map((mv) => (
           <Moviecard
-            key={props}
-            review={data}
-            id={data.id}
+            key={mv._id}
+            review={mv}
+            id={mv._id}
             deleteButton={
               <IconButton
-                onClick={() => deleteMovie(data.id)}
+                onClick={() => deleteMovie(mv._id)}
                 sx={{ marginLeft: "auto" }}
                 color="secondary"
                 aria-label="delete"
@@ -44,7 +44,7 @@ export function Movielist() {
             }
             editButton={
               <IconButton
-                onClick={() => navigate(`/movies/edit/${data.id}`)}
+                onClick={() => navigate(`/movies/edit/${mv._id}`)}
                 sx={{ marginLeft: "auto" }}
                 color="primary"
                 aria-label="Edit"
